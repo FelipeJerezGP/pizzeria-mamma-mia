@@ -1,20 +1,18 @@
-import React from "react";
 import { Box, Typography } from "@mui/material";
 
 const Footer = () => {
   return (
     <Box
+      component="footer"
       sx={{
-        width: "100%",
-        height: "50px",
         backgroundColor: "black",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
+        color: "white",
+        textAlign: "center",
+        py: 2,
       }}
     >
-      <Typography color="white" align="center">
-        ©2025-Pizzería MammaMia!-Todoslosderechos reservados
+      <Typography variant="body1">
+        © 2025 Pizzería Mamma Mia! - Todos los derechos reservados.
       </Typography>
     </Box>
   );
