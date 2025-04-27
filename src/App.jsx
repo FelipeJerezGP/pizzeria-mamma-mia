@@ -3,6 +3,7 @@ import Home from "./components/Home";
 import Footer from "./components/Footer";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
+import Cart from "./components/Cart";
 import { Box } from "@mui/material";
 
 function App() {
@@ -24,9 +25,10 @@ function App() {
           mb: 4,
         }}
       >
+        <Cart />
         {/* <Home /> */}
         {/* <Register /> */}
-        <Login />
+        {/* <Login /> */}
       </Box>
 
       <Footer />
