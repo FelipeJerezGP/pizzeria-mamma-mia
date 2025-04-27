@@ -1,6 +1,7 @@
 import NavBar from "./components/Navbar";
 import Home from "./components/Home";
 import Footer from "./components/Footer";
+import Pizza from "./components/Pizza";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import Cart from "./components/Cart";
@@ -25,8 +26,9 @@ function App() {
           mb: 4,
         }}
       >
-        <Cart />
+        {/* <Cart /> */}
         {/* <Home /> */}
+        <Pizza />
         {/* <Register /> */}
         {/* <Login /> */}
       </Box>

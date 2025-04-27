@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Card,
   Divider,
@@ -16,19 +16,36 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import funFormattedPrice from "../utils/funFormattedPrice";
 
-export default function CardPizza({
-  img,
-  name,
-  description,
-  price,
-  ingredients,
-}) {
+const Pizza = () => {
+  const [currentpizza, setCurrentPizza] = useState({
+    img: "",
+    name: "",
+    desc: "",
+    ingredients: "",
+    price: 0,
+  });
+
+  async function getCurrentPizza() {
+    const res = await fetch("http://localhost:5001/api/pizzas/p001");
+    const data = await res.json();
+    setCurrentPizza(data);
+  }
+
+  useEffect(() => {
+    getCurrentPizza();
+  }, []);
+
   return (
     <Card sx={{ maxWidth: 345, margin: 3 }}>
-      <CardMedia component="img" alt="green iguana" height="200" image={img} />
+      <CardMedia
+        component="img"
+        alt="green iguana"
+        height="200"
+        image={currentpizza?.img}
+      />
       <CardContent>
         <Typography gutterBottom variant="h6">
-          {name}
+          {currentpizza?.name}
         </Typography>
 
         <Typography
@@ -36,7 +53,7 @@ export default function CardPizza({
           color="text.secondary"
           sx={{ mt: 1, mb: 2 }}
         >
-          {description}
+          {currentpizza?.desc}
         </Typography>
 
         <Divider
@@ -50,7 +67,7 @@ export default function CardPizza({
 
           <Typography gutterBottom variant="subtitle2" align="center">
             <LocalPizzaIcon sx={{ color: yellow[500] }} />
-            {ingredients}
+            {currentpizza.ingredients}
           </Typography>
         </Box>
 
@@ -63,7 +80,7 @@ export default function CardPizza({
           sx={{ color: "text.secondary" }}
           align="center"
         >
-          Precio: {funFormattedPrice(price)}
+          Precio: {funFormattedPrice(currentpizza.price)}
         </Typography>
       </CardContent>
       <CardActions
@@ -83,9 +100,6 @@ export default function CardPizza({
             alignItems: "center",
           }}
         >
-          <Button size="small" variant="outlined" endIcon={<VisibilityIcon />}>
-            Ver más
-          </Button>
           <Button
             size="small"
             variant="contained"
@@ -98,4 +112,6 @@ export default function CardPizza({
       </CardActions>
     </Card>
   );
-}
+};
+
+export default Pizza;
